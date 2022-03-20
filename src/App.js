@@ -1,22 +1,31 @@
-import './App.css';
+
+import react from 'react';
+import Product from './components/Product';
+import ProductList from "./components/ProductList"
+import data from './models/data.json'
+import BasketCount from './components/BasketCount';
+import BasketTotal from './components/BasketTotal';
+import Header from './components/Header';
+import Basket from './components/Basket';
+import Search from './components/Search';
+import { useState } from 'react'
+
 
 function App() {
+  console.log("My data", data)
+  console.log("These are all the tracks", Product)
+  const [BasketItems, setBasketItems] = useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://imusicstore.netlify.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-         View Example Bookcase App
-        </a>
-      </header>
-    </div>
+    <>
+  
+        <h1> Media Store App </h1> 
+        <div><Search>Search Here...</Search></div>
+         <div><Basket>BasketItems={BasketItems}</Basket></div>
+        {data.map((product) => (
+          <Product trackName={product.trackName} trackPrice={product.trackPrice} />
+          
+        ))}
+  </>
   );
 }
 
